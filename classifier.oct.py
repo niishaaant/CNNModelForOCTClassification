@@ -11,8 +11,8 @@ from pathlib import Path
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 # Suppress CUDA warnings and logs
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppresses INFO and WARNING logs
-os.environ['TF_ABSL_LOG_LEVEL'] = '3'    # Suppress absl-related logs
-os.environ['CUDA_LAUNCH_BLOCKING'] = '0'    # Disable CUDA debugging
+os.environ['TF_ABSL_LOG_LEVEL'] = '3'     # Suppress absl-related logs
+os.environ['CUDA_LAUNCH_BLOCKING'] = '0'  # Disable CUDA debugging
 
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.callbacks import (
@@ -24,7 +24,10 @@ from tensorflow.keras.utils import Sequence
 from tensorflow.keras import models, layers
 import tensorflow as tf
 from PIL import Image
+import seaborn as sns
+import matplotlib.pyplot as plt
 
+# Disable logging
 tf.get_logger().setLevel(logging.ERROR)
 logging.getLogger('absl').setLevel(logging.ERROR)
 
@@ -38,6 +41,10 @@ val_dir = os.path.abspath((dataset_dir / 'val').resolve())
 predict_dir = os.path.abspath((project_dir / 'predict').resolve())
 prediction_file = os.path.abspath(
    (project_dir / 'prediction.json').resolve()
+)
+
+confusion_prediction_file = os.path.abspath(
+   (project_dir / 'confusion.prediction.json').resolve()
 )
 
 dataset_file = os.path.abspath(
@@ -69,6 +76,12 @@ model_iteration_path = os.path.abspath(
 
 # globals
 class_mapping = ['CNV', 'DME', 'DRUSEN', 'NORMAL']
+augment_params_list = [
+   {'rotate': 90, 'translate': (5, 5)},   # Rotate by 90 degrees and translate by 5px
+   {'rotate': 180, 'translate': (0, 0)},  # Rotate by 180 degrees, no translation
+   {'rotate': 0, 'translate': (10, 10)},  # No rotation, translate by 10px
+   {'rotate': 270, 'translate': (-5, -5)},# Rotate by 270 degrees, translate by -5px
+]
 dataset_info = None
 dataset = None
 Z = 0
@@ -144,6 +157,31 @@ def preprocess_4(image, K):
       return image
    return cv2.resize(image, (K, K))  # Resize to K x K
 
+def preprocess (img_path, augment_type=None, augment_params=None):
+   """Helper function to load and process images lazily based on metadata"""
+   global Z, K
+   
+   # Load the original image
+   img = load_img(
+      img_path,
+      # target_size=(Z, Z),
+      color_mode='grayscale',
+   )  # Convert to grayscale
+   img = img_to_array(img)
+   
+   # Apply preprocessors
+   img = preprocess_1(img)  # Placeholder for future use
+   
+   # Apply augmentation before padding and resizing
+   if augment_type == 'augmented':
+      img = preprocess_2(img, augment_params)
+   
+   # Apply padding and resizing (common for both real and augmented images)
+   img = preprocess_3(img, Z)
+   img = preprocess_4(img, K)
+   
+   return img
+
 # Lazy Image Loading Dataset Class
 class LazyImageDataset(Sequence):
    def __init__(
@@ -197,45 +235,19 @@ class LazyImageDataset(Sequence):
       np.random.shuffle(self.indexes)
 
    def load_image(self, img_path, augment_type, augment_params):
-      global Z, K
-      
       """Helper function to load and process images lazily based on metadata"""
-      # Load the original image
-      img = load_img(
-         img_path,
-         # target_size=(Z, Z),
-         color_mode='grayscale',
-      )  # Convert to grayscale
-      img = img_to_array(img)
-      
-      # Apply preprocessors
-      img = preprocess_1(img)  # Placeholder for future use
-      
-      # Apply augmentation before padding and resizing
-      if augment_type == 'augmented':
-         img = preprocess_2(img, augment_params)
-      
-      # Apply padding and resizing (common for both real and augmented images)
-      img = preprocess_3(img, Z)
-      img = preprocess_4(img, K)
-      
-      return img
+      return preprocess(img_path, augment_type, augment_params)
 
 # Compute Z and K when generating dataset
 def generate_dataset_info(dataset_dirs):
+   global augment_params_list
+   
    dataset = {
       'train' : [],
       'test'  : [],
       'val'   : [],
    }
    max_width, max_height = 0, 0
-   
-   augment_params_list = [
-      {'rotate': 90, 'translate': (5, 5)},   # Rotate by 90 degrees and translate by 5px
-      {'rotate': 180, 'translate': (0, 0)},  # Rotate by 180 degrees, no translation
-      {'rotate': 0, 'translate': (10, 10)},  # No rotation, translate by 10px
-      {'rotate': 270, 'translate': (-5, -5)},# Rotate by 270 degrees, translate by -5px
-   ]
    
    # Loop through train, test, and val directories
    for dataset_type, dataset_path in dataset_dirs.items():
@@ -265,14 +277,16 @@ def generate_dataset_info(dataset_dirs):
    
    # Calculate global Z (max dimension) and global K (for resizing)
    Z = max(max_width, max_height)
-   # K = Z // 2 if Z // 2 > 32 else 32  # For memory optimization
-   K = 120
+   # K = Z // 2 if Z // 2 > 32 else 32
+   K = 120  # For (memory) optimization
    
    dataset_info = {'Z': Z, 'K': K, 'dataset': dataset}
    return dataset_info
 
 def dataset_init ():
    global dataset_file, dataset_info, dataset, Z, K
+   global train_dir, test_dir, val_dir
+   
    # Check if dataset preprocessed file exists
    if os.path.exists(dataset_file):
       print('[ dataset ]: found, loading existing')
@@ -337,9 +351,10 @@ def model_train ():
    global model_iteration_path, dataset, Z, K
    
    # Load model if it exists
-   if os.path.exists(model_accuracy_categorical_path):
+   # if os.path.exists(model_accuracy_categorical_path):
+   if os.path.exists(model_final_path):
       print('[ model ]: found, loading existing')
-      model = tf.keras.models.load_model(model_loss_path)
+      model = tf.keras.models.load_model(model_final_path)
    else:
       print('[ model ]: not found, generating')
       model = create_model((K, K, 1))  # Input shape for grayscale images
@@ -434,9 +449,9 @@ def model_train ():
          ReduceLROnPlateau(                                
             monitor='val_accuracy',  # or 'val_accuracy'
             factor=0.8, # 0.5,       # Reduce the learning rate by half
-            patience=0,          # Number of epochs with no improvement after which learning rate will be reduced
-            min_lr=1e-9,         # Lower bound on learning rate
-            verbose=1            # Print a message when the learning rate is reduced
+            patience=0,    # Number of epochs with no improvement after which learning rate will be reduced
+            min_lr=1e-9,   # Lower bound on learning rate
+            verbose=1      # Print a message when the learning rate is reduced
          ),
          LearningRateScheduler((
             lambda epoch, lr: (lr * 0.94)
@@ -462,18 +477,80 @@ def model_train ():
       test_cat_acc,
       test_mae,
       test_mse,
-   ) = model.evaluate(test_gen, steps=test_steps)
+   ) = model.evaluate(
+      test_gen,
+      # steps=test_steps,
+   )
    
    print(f"Test accuracy: {test_acc}, Test loss: {test_loss}")
    print(f"Test categorical accuracy: {test_cat_acc}")
    print(f"Test MAE: {test_mae}, Test MSE: {test_mse}")
 
+def predict_image (
+   model,
+   img_path,
+   
+   *args,
+   
+   label_string=True,
+   
+   **kwargs,
+):
+   global class_mapping
+   
+   img = preprocess(
+      img_path,
+      *args,
+      **kwargs,
+   )
+   # img = np.expand_dims(img, axis=0)  # Add batch dimension (1, K, K, 1)
+   img = np.reshape(img, (1, *img.shape))
+   
+   prediction = np.argmax(
+      model.predict(img),
+      axis=-1,
+   )[0]
+   
+   if (label_string):
+      prediction = class_mapping[prediction]
+   
+   return prediction
+
+def confusion_plot (category, matrix_confusion):
+   global class_mapping, project_dir
+   
+   plt.figure(figsize=(6, 5))
+   sns.heatmap(
+      matrix_confusion,
+      annot=True,
+      fmt='d',
+      cmap='BuPu',
+      xticklabels=class_mapping.copy(),
+      yticklabels=class_mapping.copy(),
+   )
+   plt.xlabel('Label')
+   plt.ylabel('Prediction')
+   plt.title('Confusion Matrix [{0}]'.format(category))
+   plt.savefig(
+      (  
+            project_dir
+         /  'plot.matrix.confusion.{0}.png'.format(category)
+      ).resolve()
+   )
+   plt.close()
+   
+   return None
+
 def train ():
    dataset_init()
    model_train()
 
-def predict ():
+def predict (checkpoints=False):
    global predict_dir, prediction_file, class_mapping, Z, K
+   global model_loss_path, model_accuracy_path
+   global model_mae_path, model_mse_path, model_iteration_path
+   global model_accuracy_categorical_path
+   global model_final_path
    
    if (
          (Z == 0)
@@ -483,15 +560,21 @@ def predict ():
    
    dataset_prediction = list()
    models = dict()
-   model_paths = {
-      'loss'                  : model_loss_path,
-      'accuracy'              : model_accuracy_path,
-      'accuracy.categorical'  : model_accuracy_categorical_path,
-      'mae'                   : model_mae_path,
-      'mse'                   : model_mse_path,
-      'final'                 : model_final_path,
-      'iteration'             : model_iteration_path,
-   }
+   if (checkpoints):
+      model_paths = {
+         'mae'                   : model_mae_path,
+         'mse'                   : model_mse_path,
+         'loss'                  : model_loss_path,
+         'iteration'             : model_iteration_path,
+         'accuracy'              : model_accuracy_path,
+         'accuracy.categorical'  : model_accuracy_categorical_path,
+         'final'                 : model_final_path,
+      }
+   else:
+      model_paths = {
+         # 'prediction'  : model_accuracy_categorical_path,
+         'prediction'  : model_final_path,
+      }
    
    for model_name, model_path in model_paths.items():
       model = None
@@ -505,49 +588,148 @@ def predict ():
       if (model is not None):
          models[model_name] = model
    
-   for image_name in os.listdir(predict_dir):
-      img_path = os.path.join(predict_dir, image_name)
-      if img_path.lower().endswith(('.jpeg', '.jpg', '.png')):
-         img = load_img(
-            img_path,
-            # target_size=(Z, Z),
-            color_mode='grayscale',
-         )  # Convert to grayscale
-         img = img_to_array(img)
-         
-         # Apply preprocessors
-         img = preprocess_1(img)  # Placeholder for future use
-         
-         # Apply padding and resizing (common for both real and augmented images)
-         img = preprocess_3(img, Z)
-         img = preprocess_4(img, K)
-         # Reshape image to be compatible with model input (batch_size, height, width, channels)
-         # img = np.expand_dims(img, axis=0)  # Add batch dimension (1, K, K, 1)
-         img = np.reshape(img, (1, *img.shape))
-         
-         prediction = {
-            'image' : image_name,
-         }
-         
-         for model_key, model in models.items():
-            prediction[model_key] = class_mapping[
-               np.argmax(
-                  model.predict(img),
-                  axis=-1,
-               )[0]
-            ]
-         
-         dataset_prediction.append(prediction)
+   if (models):
+      for image_name in os.listdir(predict_dir):
+         img_path = os.path.join(predict_dir, image_name)
+         if img_path.lower().endswith(('.jpeg', '.jpg', '.png')):
+            prediction = {
+               'image' : image_name,
+            }
+            
+            for model_key, model in models.items():
+               prediction[model_key] = predict_image(
+                  model,
+                  img_path,
+                  label_string=True,
+               )
+            
+            dataset_prediction.append(prediction)
+      
+      # save prediction
+      with open(prediction_file, 'w') as f:
+         json.dump(dataset_prediction, f)
    
-   # save prediction
-   with open(prediction_file, 'w') as f:
-      json.dump(dataset_prediction, f)
+   return None
+
+def matrix_confusion ():
+   global Z, K, confusion_prediction_file, class_mapping, dataset
+   # global model_accuracy_categorical_path
+   global model_final_path
+   
+   if (
+         (Z == 0)
+      or (K == 0)
+   ):
+      dataset_init()
+   
+   model = None
+   try:
+      model = tf.keras.models.load_model(
+         # model_accuracy_categorical_path,
+         model_final_path,
+      )
+   except:
+      model = None
+   
+   if (model is None):
+      return None
+   
+   confusion_prediction = {
+      'Z' : Z,
+      'K' : K,
+      
+      'predictions.dataset' : dict(),
+   }
+   confusion_matrix = dict()
+   
+   labels = list()
+   predictions = list()
+   
+   print('[ info ] : predicting')
+   print('\n[ DATA ]')
+   for dataset_category, categorized_dataset in dataset.items():
+      labels_categorized = list()
+      predictions_categorized = list()
+      
+      row_predictions = list()
+      
+      print(' ')
+      for index, row in enumerate(categorized_dataset):
+         print(
+            '\r\033[2A\r[ {0:_>7} ]\r\033[1B\r\033[K\r'.format(
+               index,
+            ),
+            end='',
+         )
+         row_prediction = predict_image(
+            model,
+            row[0],  # img_path
+            
+            label_string=False,
+            
+            augment_type=row[2],
+            augment_params=row[3],
+         )
+         
+         # Confusion prediction file - row format
+         row_predictions.append({
+            'path_image': row[0],
+            'type_image': row[2],
+            'parameters': row[3],
+            'prediction': class_mapping[row_prediction],
+            'label'     : row[1],
+         })
+         
+         labels_categorized.append(
+            class_mapping.index(row[1]),
+         )
+         predictions_categorized.append(
+            row_prediction,
+         )
+      
+      confusion_prediction['predictions.dataset'][
+         dataset_category
+      ] = row_predictions
+      
+      labels.extend(labels_categorized)
+      predictions.extend(predictions_categorized)
+      
+      confusion_matrix[
+         dataset_category
+      ] = tf.math.confusion_matrix(
+         labels_categorized,
+         predictions_categorized,
+      )
+   
+   print(' ')
+   
+   confusion_matrix[
+      'combined'
+   ] = tf.math.confusion_matrix(
+      labels,
+      predictions,
+   )
+   
+   # save confusion
+   with open(confusion_prediction_file, 'w') as f:
+      json.dump(confusion_prediction, f)
+   
+   print('[ info ] : plotting confusion matrix')
+   
+   for category, i_matrix_confusion in confusion_matrix.items():
+      confusion_plot(
+         category,
+         i_matrix_confusion,
+      )
+   
+   return None
 
 if __name__ == '__main__':
    print('[ status ] : starting')
    
-   choice_model_train = False
-   choice_model_predict = False
+   choice_model_train      = False
+   choice_model_predict    = False
+   choice_matrix_confusion = False
    
    if (len(sys.argv) > 1):
       for argv in sys.argv[1:]:
@@ -560,9 +742,15 @@ if __name__ == '__main__':
             'p', '1', 'u'
          ):
             choice_model_predict = True
+         
+         if (str(argv).lower()[:1]) in (
+            'c', '2', 'b'
+         ):
+            choice_matrix_confusion = True
    else:
-      choice_model_train = True
-      choice_model_predict = True
+      choice_model_train      = True
+      choice_model_predict    = True
+      choice_matrix_confusion = True
    
    if (choice_model_train):
       print('[ state ] : training')
@@ -573,5 +761,10 @@ if __name__ == '__main__':
       print('[ state ] : predicting')
       predict()
       print('[ state ] : predicted')
+   
+   if (choice_matrix_confusion):
+      print('[ state ] : building confusion matrix')
+      matrix_confusion()
+      print('[ state ] : confusion matrix built')
    
    print('[ status ] : done')

@@ -3,3 +3,5 @@ pillow
 keras
 tensorflow
 numpy
+matplotlib
+seaborn

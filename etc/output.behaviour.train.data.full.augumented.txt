@@ -1,0 +1,314 @@
+Epoch 1/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7939 - categorical_accuracy: 0.7939 - loss: 0.5250 - mae: 0.1452 - mse: 0.0721
+Epoch 1: loss improved from inf to 0.50759, saving model to model.loss.h5.keras
+
+Epoch 1: accuracy improved from -inf to 0.80026, saving model to model.accuracy.h5.keras
+
+Epoch 1: categorical_accuracy improved from -inf to 0.80026, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 1: mae improved from inf to 0.14042, saving model to model.mae.h5.keras
+
+Epoch 1: mse improved from inf to 0.06990, saving model to model.mse.h5.keras
+
+Epoch 1: saving model to model.result.final.h5.keras
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2890s 3s/step - accuracy: 0.7939 - categorical_accuracy: 0.7939 - loss: 0.5250 - mae: 0.1452 - mse: 0.0721 - val_accuracy: 0.6687 - val_categorical_accuracy: 0.6687 - val_loss: 0.9766 - val_mae: 0.1940 - val_mse: 0.1229 - learning_rate: 9.4000e-04
+Epoch 2/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8219 - categorical_accuracy: 0.8219 - loss: 0.4546 - mae: 0.1267 - mse: 0.0631
+Epoch 2: loss improved from 0.50759 to 0.44577, saving model to model.loss.h5.keras
+
+Epoch 2: accuracy improved from 0.80026 to 0.82561, saving model to model.accuracy.h5.keras
+
+Epoch 2: categorical_accuracy improved from 0.80026 to 0.82561, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 2: mae improved from 0.14042 to 0.12401, saving model to model.mae.h5.keras
+
+Epoch 2: mse improved from 0.06990 to 0.06177, saving model to model.mse.h5.keras
+
+Epoch 2: saving model to model.result.final.h5.keras
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2902s 3s/step - accuracy: 0.8219 - categorical_accuracy: 0.8219 - loss: 0.4546 - mae: 0.1267 - mse: 0.0631 - val_accuracy: 0.7312 - val_categorical_accuracy: 0.7312 - val_loss: 0.9268 - val_mae: 0.1739 - val_mse: 0.1044 - learning_rate: 8.8360e-04
+Epoch 3/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8435 - categorical_accuracy: 0.8435 - loss: 0.4062 - mae: 0.1135 - mse: 0.0563
+Epoch 3: loss improved from 0.44577 to 0.40251, saving model to model.loss.h5.keras
+
+Epoch 3: accuracy improved from 0.82561 to 0.84503, saving model to model.accuracy.h5.keras
+
+Epoch 3: categorical_accuracy improved from 0.82561 to 0.84503, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 3: mae improved from 0.12401 to 0.11195, saving model to model.mae.h5.keras
+
+Epoch 3: mse improved from 0.06177 to 0.05574, saving model to model.mse.h5.keras
+
+Epoch 3: saving model to model.result.final.h5.keras
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2899s 3s/step - accuracy: 0.8435 - categorical_accuracy: 0.8435 - loss: 0.4062 - mae: 0.1135 - mse: 0.0563 - val_accuracy: 0.8000 - val_categorical_accuracy: 0.8000 - val_loss: 0.7379 - val_mae: 0.1429 - val_mse: 0.0833 - learning_rate: 8.3058e-04
+Epoch 4/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8560 - categorical_accuracy: 0.8560 - loss: 0.3736 - mae: 0.1045 - mse: 0.0518
+Epoch 4: loss improved from 0.40251 to 0.36993, saving model to model.loss.h5.keras
+
+Epoch 4: accuracy improved from 0.84503 to 0.85814, saving model to model.accuracy.h5.keras
+
+Epoch 4: categorical_accuracy improved from 0.84503 to 0.85814, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 4: mae improved from 0.11195 to 0.10294, saving model to model.mae.h5.keras
+
+Epoch 4: mse improved from 0.05574 to 0.05123, saving model to model.mse.h5.keras
+
+Epoch 4: saving model to model.result.final.h5.keras
+
+Epoch 4: ReduceLROnPlateau reducing learning rate to 0.00062459921464324.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2884s 3s/step - accuracy: 0.8560 - categorical_accuracy: 0.8560 - loss: 0.3736 - mae: 0.1045 - mse: 0.0518 - val_accuracy: 0.7625 - val_categorical_accuracy: 0.7625 - val_loss: 0.7582 - val_mae: 0.1434 - val_mse: 0.0884 - learning_rate: 6.2460e-04
+Epoch 5/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8712 - categorical_accuracy: 0.8712 - loss: 0.3358 - mae: 0.0941 - mse: 0.0466
+Epoch 5: loss improved from 0.36993 to 0.33688, saving model to model.loss.h5.keras
+
+Epoch 5: accuracy improved from 0.85814 to 0.87147, saving model to model.accuracy.h5.keras
+
+Epoch 5: categorical_accuracy improved from 0.85814 to 0.87147, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 5: mae improved from 0.10294 to 0.09388, saving model to model.mae.h5.keras
+
+Epoch 5: mse improved from 0.05123 to 0.04663, saving model to model.mse.h5.keras
+
+Epoch 5: saving model to model.result.final.h5.keras
+
+Epoch 5: ReduceLROnPlateau reducing learning rate to 0.00046969861723482613.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2887s 3s/step - accuracy: 0.8712 - categorical_accuracy: 0.8712 - loss: 0.3358 - mae: 0.0941 - mse: 0.0466 - val_accuracy: 0.8000 - val_categorical_accuracy: 0.8000 - val_loss: 0.6680 - val_mae: 0.1273 - val_mse: 0.0751 - learning_rate: 4.6970e-04
+Epoch 6/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8842 - categorical_accuracy: 0.8842 - loss: 0.3054 - mae: 0.0861 - mse: 0.0422
+Epoch 6: loss improved from 0.33688 to 0.30789, saving model to model.loss.h5.keras
+
+Epoch 6: accuracy improved from 0.87147 to 0.88328, saving model to model.accuracy.h5.keras
+
+Epoch 6: categorical_accuracy improved from 0.87147 to 0.88328, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 6: mae improved from 0.09388 to 0.08633, saving model to model.mae.h5.keras
+
+Epoch 6: mse improved from 0.04663 to 0.04262, saving model to model.mse.h5.keras
+
+Epoch 6: saving model to model.result.final.h5.keras
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2809s 3s/step - accuracy: 0.8842 - categorical_accuracy: 0.8842 - loss: 0.3054 - mae: 0.0861 - mse: 0.0422 - val_accuracy: 0.8687 - val_categorical_accuracy: 0.8687 - val_loss: 0.6224 - val_mae: 0.1038 - val_mse: 0.0604 - learning_rate: 4.4152e-04
+Epoch 7/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8921 - categorical_accuracy: 0.8921 - loss: 0.2857 - mae: 0.0807 - mse: 0.0395
+Epoch 7: loss improved from 0.30789 to 0.28771, saving model to model.loss.h5.keras
+
+Epoch 7: accuracy improved from 0.88328 to 0.89098, saving model to model.accuracy.h5.keras
+
+Epoch 7: categorical_accuracy improved from 0.88328 to 0.89098, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 7: mae improved from 0.08633 to 0.08096, saving model to model.mae.h5.keras
+
+Epoch 7: mse improved from 0.04262 to 0.03991, saving model to model.mse.h5.keras
+
+Epoch 7: saving model to model.result.final.h5.keras
+
+Epoch 7: ReduceLROnPlateau reducing learning rate to 0.00033202057238668203.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2904s 3s/step - accuracy: 0.8921 - categorical_accuracy: 0.8921 - loss: 0.2857 - mae: 0.0807 - mse: 0.0395 - val_accuracy: 0.8188 - val_categorical_accuracy: 0.8188 - val_loss: 0.7197 - val_mae: 0.1148 - val_mse: 0.0707 - learning_rate: 3.3202e-04
+Epoch 8/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9006 - categorical_accuracy: 0.9006 - loss: 0.2638 - mae: 0.0753 - mse: 0.0366
+Epoch 8: loss improved from 0.28771 to 0.26436, saving model to model.loss.h5.keras
+
+Epoch 8: accuracy improved from 0.89098 to 0.90017, saving model to model.accuracy.h5.keras
+
+Epoch 8: categorical_accuracy improved from 0.89098 to 0.90017, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 8: mae improved from 0.08096 to 0.07497, saving model to model.mae.h5.keras
+
+Epoch 8: mse improved from 0.03991 to 0.03663, saving model to model.mse.h5.keras
+
+Epoch 8: saving model to model.result.final.h5.keras
+
+Epoch 8: ReduceLROnPlateau reducing learning rate to 0.0002496794797480106.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2836s 3s/step - accuracy: 0.9006 - categorical_accuracy: 0.9006 - loss: 0.2638 - mae: 0.0753 - mse: 0.0366 - val_accuracy: 0.8500 - val_categorical_accuracy: 0.8500 - val_loss: 0.6903 - val_mae: 0.1027 - val_mse: 0.0629 - learning_rate: 2.4968e-04
+Epoch 9/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 4s/step - accuracy: 0.9105 - categorical_accuracy: 0.9105 - loss: 0.2397 - mae: 0.0690 - mse: 0.0332
+Epoch 9: loss improved from 0.26436 to 0.24086, saving model to model.loss.h5.keras
+
+Epoch 9: accuracy improved from 0.90017 to 0.90965, saving model to model.accuracy.h5.keras
+
+Epoch 9: categorical_accuracy improved from 0.90017 to 0.90965, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 9: mae improved from 0.07497 to 0.06892, saving model to model.mae.h5.keras
+
+Epoch 9: mse improved from 0.03663 to 0.03335, saving model to model.mse.h5.keras
+
+Epoch 9: saving model to model.result.final.h5.keras
+
+Epoch 9: ReduceLROnPlateau reducing learning rate to 0.00018775897333398462.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2949s 4s/step - accuracy: 0.9105 - categorical_accuracy: 0.9105 - loss: 0.2397 - mae: 0.0690 - mse: 0.0332 - val_accuracy: 0.8687 - val_categorical_accuracy: 0.8687 - val_loss: 0.5847 - val_mae: 0.0908 - val_mse: 0.0555 - learning_rate: 1.8776e-04
+Epoch 10/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9183 - categorical_accuracy: 0.9183 - loss: 0.2209 - mae: 0.0642 - mse: 0.0305
+Epoch 10: loss improved from 0.24086 to 0.22156, saving model to model.loss.h5.keras
+
+Epoch 10: accuracy improved from 0.90965 to 0.91760, saving model to model.accuracy.h5.keras
+
+Epoch 10: categorical_accuracy improved from 0.90965 to 0.91760, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 10: mae improved from 0.06892 to 0.06402, saving model to model.mae.h5.keras
+
+Epoch 10: mse improved from 0.03335 to 0.03060, saving model to model.mse.h5.keras
+
+Epoch 10: saving model to model.result.final.h5.keras
+
+Epoch 10: ReduceLROnPlateau reducing learning rate to 0.00014119474217295648.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2916s 3s/step - accuracy: 0.9183 - categorical_accuracy: 0.9183 - loss: 0.2209 - mae: 0.0642 - mse: 0.0305 - val_accuracy: 0.8687 - val_categorical_accuracy: 0.8687 - val_loss: 0.6441 - val_mae: 0.0889 - val_mse: 0.0542 - learning_rate: 1.4119e-04
+Epoch 11/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9254 - categorical_accuracy: 0.9254 - loss: 0.2044 - mae: 0.0600 - mse: 0.0281
+Epoch 11: loss improved from 0.22156 to 0.20539, saving model to model.loss.h5.keras
+
+Epoch 11: accuracy improved from 0.91760 to 0.92432, saving model to model.accuracy.h5.keras
+
+Epoch 11: categorical_accuracy improved from 0.91760 to 0.92432, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 11: mae improved from 0.06402 to 0.05988, saving model to model.mae.h5.keras
+
+Epoch 11: mse improved from 0.03060 to 0.02831, saving model to model.mse.h5.keras
+
+Epoch 11: saving model to model.result.final.h5.keras
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2848s 3s/step - accuracy: 0.9254 - categorical_accuracy: 0.9254 - loss: 0.2044 - mae: 0.0600 - mse: 0.0281 - val_accuracy: 0.8750 - val_categorical_accuracy: 0.8750 - val_loss: 0.6647 - val_mae: 0.0903 - val_mse: 0.0563 - learning_rate: 1.3272e-04
+Epoch 12/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9297 - categorical_accuracy: 0.9297 - loss: 0.1920 - mae: 0.0568 - mse: 0.0264
+Epoch 12: loss improved from 0.20539 to 0.19471, saving model to model.loss.h5.keras
+
+Epoch 12: accuracy improved from 0.92432 to 0.92817, saving model to model.accuracy.h5.keras
+
+Epoch 12: categorical_accuracy improved from 0.92432 to 0.92817, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 12: mae improved from 0.05988 to 0.05703, saving model to model.mae.h5.keras
+
+Epoch 12: mse improved from 0.02831 to 0.02681, saving model to model.mse.h5.keras
+
+Epoch 12: saving model to model.result.final.h5.keras
+
+Epoch 12: ReduceLROnPlateau reducing learning rate to 9.980773320421577e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2919s 3s/step - accuracy: 0.9297 - categorical_accuracy: 0.9297 - loss: 0.1920 - mae: 0.0568 - mse: 0.0264 - val_accuracy: 0.8750 - val_categorical_accuracy: 0.8750 - val_loss: 0.6697 - val_mae: 0.0862 - val_mse: 0.0547 - learning_rate: 9.9808e-05
+Epoch 13/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9346 - categorical_accuracy: 0.9346 - loss: 0.1808 - mae: 0.0538 - mse: 0.0247
+Epoch 13: loss improved from 0.19471 to 0.18180, saving model to model.loss.h5.keras
+
+Epoch 13: accuracy improved from 0.92817 to 0.93395, saving model to model.accuracy.h5.keras
+
+Epoch 13: categorical_accuracy improved from 0.92817 to 0.93395, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 13: mae improved from 0.05703 to 0.05376, saving model to model.mae.h5.keras
+
+Epoch 13: mse improved from 0.02681 to 0.02491, saving model to model.mse.h5.keras
+
+Epoch 13: saving model to model.result.final.h5.keras
+
+Epoch 13: ReduceLROnPlateau reducing learning rate to 7.505541434511543e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2867s 3s/step - accuracy: 0.9346 - categorical_accuracy: 0.9346 - loss: 0.1808 - mae: 0.0538 - mse: 0.0247 - val_accuracy: 0.8625 - val_categorical_accuracy: 0.8625 - val_loss: 0.6531 - val_mae: 0.0827 - val_mse: 0.0535 - learning_rate: 7.5055e-05
+Epoch 14/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9387 - categorical_accuracy: 0.9387 - loss: 0.1705 - mae: 0.0510 - mse: 0.0233
+Epoch 14: loss improved from 0.18180 to 0.17195, saving model to model.loss.h5.keras
+
+Epoch 14: accuracy improved from 0.93395 to 0.93830, saving model to model.accuracy.h5.keras
+
+Epoch 14: categorical_accuracy improved from 0.93395 to 0.93830, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 14: mae improved from 0.05376 to 0.05114, saving model to model.mae.h5.keras
+
+Epoch 14: mse improved from 0.02491 to 0.02347, saving model to model.mse.h5.keras
+
+Epoch 14: saving model to model.result.final.h5.keras
+
+Epoch 14: ReduceLROnPlateau reducing learning rate to 5.644167540594936e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2886s 3s/step - accuracy: 0.9387 - categorical_accuracy: 0.9387 - loss: 0.1705 - mae: 0.0510 - mse: 0.0233 - val_accuracy: 0.8750 - val_categorical_accuracy: 0.8750 - val_loss: 0.6900 - val_mae: 0.0823 - val_mse: 0.0536 - learning_rate: 5.6442e-05
+Epoch 15/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9421 - categorical_accuracy: 0.9421 - loss: 0.1620 - mae: 0.0489 - mse: 0.0221
+Epoch 15: loss improved from 0.17195 to 0.16359, saving model to model.loss.h5.keras
+
+Epoch 15: accuracy improved from 0.93830 to 0.94173, saving model to model.accuracy.h5.keras
+
+Epoch 15: categorical_accuracy improved from 0.93830 to 0.94173, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 15: mae improved from 0.05114 to 0.04896, saving model to model.mae.h5.keras
+
+Epoch 15: mse improved from 0.02347 to 0.02226, saving model to model.mse.h5.keras
+
+Epoch 15: saving model to model.result.final.h5.keras
+
+Epoch 15: ReduceLROnPlateau reducing learning rate to 4.244414158165455e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2922s 4s/step - accuracy: 0.9421 - categorical_accuracy: 0.9421 - loss: 0.1620 - mae: 0.0489 - mse: 0.0221 - val_accuracy: 0.8750 - val_categorical_accuracy: 0.8750 - val_loss: 0.6670 - val_mae: 0.0789 - val_mse: 0.0505 - learning_rate: 4.2444e-05
+Epoch 16/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9451 - categorical_accuracy: 0.9451 - loss: 0.1556 - mae: 0.0471 - mse: 0.0211
+Epoch 16: loss improved from 0.16359 to 0.15748, saving model to model.loss.h5.keras
+
+Epoch 16: accuracy improved from 0.94173 to 0.94423, saving model to model.accuracy.h5.keras
+
+Epoch 16: categorical_accuracy improved from 0.94173 to 0.94423, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 16: mae improved from 0.04896 to 0.04742, saving model to model.mae.h5.keras
+
+Epoch 16: mse improved from 0.02226 to 0.02137, saving model to model.mse.h5.keras
+
+Epoch 16: saving model to model.result.final.h5.keras
+
+Epoch 16: ReduceLROnPlateau reducing learning rate to 3.191799623891711e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2883s 3s/step - accuracy: 0.9451 - categorical_accuracy: 0.9451 - loss: 0.1556 - mae: 0.0471 - mse: 0.0211 - val_accuracy: 0.8750 - val_categorical_accuracy: 0.8750 - val_loss: 0.6865 - val_mae: 0.0784 - val_mse: 0.0514 - learning_rate: 3.1918e-05
+Epoch 17/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9465 - categorical_accuracy: 0.9465 - loss: 0.1522 - mae: 0.0461 - mse: 0.0206
+Epoch 17: loss improved from 0.15748 to 0.15265, saving model to model.loss.h5.keras
+
+Epoch 17: accuracy improved from 0.94423 to 0.94629, saving model to model.accuracy.h5.keras
+
+Epoch 17: categorical_accuracy improved from 0.94423 to 0.94629, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 17: mae improved from 0.04742 to 0.04616, saving model to model.mae.h5.keras
+
+Epoch 17: mse improved from 0.02137 to 0.02065, saving model to model.mse.h5.keras
+
+Epoch 17: saving model to model.result.final.h5.keras
+
+Epoch 17: ReduceLROnPlateau reducing learning rate to 2.4002333520911635e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2847s 3s/step - accuracy: 0.9465 - categorical_accuracy: 0.9465 - loss: 0.1522 - mae: 0.0461 - mse: 0.0206 - val_accuracy: 0.8750 - val_categorical_accuracy: 0.8750 - val_loss: 0.7070 - val_mae: 0.0788 - val_mse: 0.0520 - learning_rate: 2.4002e-05
+Epoch 18/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9479 - categorical_accuracy: 0.9479 - loss: 0.1498 - mae: 0.0454 - mse: 0.0202
+Epoch 18: loss improved from 0.15265 to 0.14904, saving model to model.loss.h5.keras
+
+Epoch 18: accuracy improved from 0.94629 to 0.94778, saving model to model.accuracy.h5.keras
+
+Epoch 18: categorical_accuracy improved from 0.94629 to 0.94778, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 18: mae improved from 0.04616 to 0.04520, saving model to model.mae.h5.keras
+
+Epoch 18: mse improved from 0.02065 to 0.02013, saving model to model.mse.h5.keras
+
+Epoch 18: saving model to model.result.final.h5.keras
+
+Epoch 18: ReduceLROnPlateau reducing learning rate to 1.8049754726234823e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2835s 3s/step - accuracy: 0.9479 - categorical_accuracy: 0.9479 - loss: 0.1498 - mae: 0.0454 - mse: 0.0202 - val_accuracy: 0.8750 - val_categorical_accuracy: 0.8750 - val_loss: 0.7071 - val_mae: 0.0781 - val_mse: 0.0515 - learning_rate: 1.8050e-05
+Epoch 19/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9492 - categorical_accuracy: 0.9492 - loss: 0.1466 - mae: 0.0445 - mse: 0.0197
+Epoch 19: loss improved from 0.14904 to 0.14626, saving model to model.loss.h5.keras
+
+Epoch 19: accuracy improved from 0.94778 to 0.94889, saving model to model.accuracy.h5.keras
+
+Epoch 19: categorical_accuracy improved from 0.94778 to 0.94889, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 19: mae improved from 0.04520 to 0.04451, saving model to model.mae.h5.keras
+
+Epoch 19: mse improved from 0.02013 to 0.01971, saving model to model.mse.h5.keras
+
+Epoch 19: saving model to model.result.final.h5.keras
+
+Epoch 19: ReduceLROnPlateau reducing learning rate to 1.3573416799772532e-05.
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2848s 3s/step - accuracy: 0.9492 - categorical_accuracy: 0.9492 - loss: 0.1466 - mae: 0.0445 - mse: 0.0197 - val_accuracy: 0.8687 - val_categorical_accuracy: 0.8687 - val_loss: 0.7014 - val_mae: 0.0765 - val_mse: 0.0511 - learning_rate: 1.3573e-05
+Epoch 20/20
+834/834 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.9500 - categorical_accuracy: 0.9500 - loss: 0.1440 - mae: 0.0438 - mse: 0.0194
+Epoch 20: loss improved from 0.14626 to 0.14408, saving model to model.loss.h5.keras
+
+Epoch 20: accuracy improved from 0.94889 to 0.94985, saving model to model.accuracy.h5.keras
+
+Epoch 20: categorical_accuracy improved from 0.94889 to 0.94985, saving model to model.accuracy.categorical.h5.keras
+
+Epoch 20: mae improved from 0.04451 to 0.04384, saving model to model.mae.h5.keras
+
+Epoch 20: mse improved from 0.01971 to 0.01939, saving model to model.mse.h5.keras
+
+Epoch 20: saving model to model.result.final.h5.keras
+834/834 ━━━━━━━━━━━━━━━━━━━━ 2816s 3s/step - accuracy: 0.9500 - categorical_accuracy: 0.9500 - loss: 0.1440 - mae: 0.0438 - mse: 0.0194 - val_accuracy: 0.8813 - val_categorical_accuracy: 0.8813 - val_loss: 0.6729 - val_mae: 0.0747 - val_mse: 0.0491 - learning_rate: 1.2759e-05
+40/40 ━━━━━━━━━━━━━━━━━━━━ 30s 750ms/step - accuracy: 0.8820 - categorical_accuracy: 0.8820 - loss: 0.4209 - mae: 0.0768 - mse: 0.0456
+Test accuracy: 0.8831250071525574, Test loss: 0.41889259219169617
+Test categorical accuracy: 0.8831250071525574
+Test MAE: 0.07620623707771301, Test MSE: 0.04570665583014488
+[ state ] : trained
+
